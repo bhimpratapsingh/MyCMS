@@ -41,6 +41,7 @@ AdminLTE - https://adminlte.io/
 - Right click on project -> Properties -> Web -> Click on create virtual directory. (Do this step for ServiceWebsite and Controlpanel in solution explorer). 
 - Once above steps are done you are good to go.
 - You can Setup Email configuration for contact page and careers page later on.
+
 **Note: Incase you create custom virtual directory then you need to do the relevant change in web.config file of ServiceWebsite for image URL and pdf URL.
 Make sure project folder has write access for IIS_IUSRS, else image save and PDF save will fail.** 
 
@@ -53,5 +54,17 @@ Make sure project folder has write access for IIS_IUSRS, else image save and PDF
 	- Build the application and you are good to go.
 	
 	
-### Screenshots:
-![alt text](https://github.com/bhimpratapsingh28/MyCMS/blob/main/CreateType.gif?raw=true)
+### Visuals:
+**1. Create and manage content, dynamic pages and upload files from control panel application.**
+
+![alt text](https://github.com/bhimpratapsingh/MyCMS/blob/main/ReadMeImages/CreateType.gif?raw=true)
+
+
+**2. Manage client logo section**
+
+![alt text](https://github.com/bhimpratapsingh/MyCMS/blob/main/ReadMeImages/AddLogo.gif?raw=true)
+
+
+**3. Manage box color for modules created on homepage**
+
+![alt text](https://github.com/bhimpratapsingh/MyCMS/blob/main/ReadMeImages/BoxColor.gif?raw=true)
