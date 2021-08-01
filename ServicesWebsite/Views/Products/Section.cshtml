@@ -1,0 +1,68 @@
+﻿@model ServicesWebsite.ViewModels.MainContentViewModel
+@{
+    ViewBag.Title = "Products - " + Constants.WEBSITE_NAME;
+}
+
+
+<div class="container">
+    <h2>@(Model.PageTitle ?? Model.Content)</h2>
+    <div>
+        <div class="col-lg-12 col-md-12" style="padding:0px;">
+            <div class="col-lg-6 col-md-6" style="padding:0px;">
+
+                <ol>
+                    @foreach (var subContentItem in Model.SubContentData)
+                    {
+                        if (!string.IsNullOrEmpty(subContentItem.FileName))
+                        {
+                            <li>@(subContentItem.Content) @Html.ActionLink("Link", "Index", "Download", new { FileName = subContentItem.FileName }, null)</li>
+                        }
+                        else if (subContentItem.AddPage)
+                        {
+                            <li>@Html.ActionLink(subContentItem.Content, "SubSection", new { SubContentId = subContentItem.Id }) </li>
+                        }
+                        else
+                        {
+                            if (subContentItem.SubContentListData.Count > 0)
+                            {
+                                <li>
+                                    @(subContentItem.Content)
+                                    <ul>
+                                        @foreach (var subContentListItem in subContentItem.SubContentListData)
+                                        {
+                                            if (!string.IsNullOrEmpty(subContentItem.FileName))
+                                            {
+                                                <li>@(subContentListItem.Content) @Html.ActionLink("Link", "Index", "Download", new { FileName = subContentListItem.FileName }, null)</li>
+                                            }
+                                            else
+                                            {
+                                                <li>@(subContentListItem.Content)</li>
+                                            }
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>@(subContentItem.Content)</li>
+                            }
+                        }
+                    }
+                </ol>
+            </div>
+            @if (!string.IsNullOrEmpty(Model.Image))
+            {
+                <div class="col-lg-6 col-md-6" style="padding-bottom:20px;">
+                    <img style="height:auto;" src="@(Constants.IMAGE_FOLDER_URL + Model.Image)" />
+                </div>
+            }
+            else
+            {
+                <div class="col-lg-6 col-md-6" style="padding-bottom:20px;">
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

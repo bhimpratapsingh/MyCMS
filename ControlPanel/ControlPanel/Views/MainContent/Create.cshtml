@@ -1,0 +1,125 @@
+﻿@model ControlPanel.ViewModels.MainContentViewModel
+@{
+    ViewBag.Title = "Create";
+    ViewBag.Screen = "Create Content";
+}
+
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">notifyMessage("@TempData["Message"]");</script>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <script type="text/javascript">notifyError("@TempData["ErrorMessage"]");</script>
+}
+
+@using (Html.BeginForm("Create", "MainContent", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.HeaderId)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@ViewBag.Screen</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.Content)
+                                        @Html.TextBoxFor(x => x.Content, new { @class = "form-control", @placeholder = "Enter Content text" })
+                                        @Html.ValidationMessageFor(x => x.Content)
+                                    </div>
+                                </div>
+                                <div class="col-md-12" id="pdf-file">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.File)
+                                        @Html.TextBoxFor(x => x.File, new { @class = "form-control", @type = "file" })
+                                        @Html.ValidationMessageFor(x => x.File)
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.MakePublic)
+                                        @Html.CheckBoxFor(x => x.MakePublic)
+                                        @Html.ValidationMessageFor(x => x.MakePublic)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.SortOrder)
+                                        @Html.TextBoxFor(x => x.SortOrder, new { @class = "form-control", @placeholder = "Enter Sort Order", @type = "number", @min = "1", @step = "1", @Value = "1" })
+                                        @Html.ValidationMessageFor(x => x.SortOrder)
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.AddPage)
+                                        @Html.CheckBoxFor(x => x.AddPage)
+                                        @Html.ValidationMessageFor(x => x.AddPage)
+                                    </div>
+                                </div>
+                                <div class="col-md-12" id="page-title">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.PageTitle)
+                                        @Html.TextBoxFor(x => x.PageTitle, new { @class = "form-control", @placeholder = "Enter Page Title" })
+                                        @Html.ValidationMessageFor(x => x.PageTitle)
+                                    </div>
+                                </div>
+                                <div class="col-md-12" id="image-file">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.ImageFile)
+                                        @Html.TextBoxFor(x => x.ImageFile, new { @class = "form-control", @type = "file" })
+                                        @Html.ValidationMessageFor(x => x.ImageFile)
+                                    </div>
+                                </div>
+                                <div class="col-md-12" id="image-viewer">
+                                    <div class="form-group">
+                                        <img class="img-responsive" id="ImageViewer" src="" style="border: solid;height: 200px" alt="Service image" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-warning" onclick="history.go(-1);">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+
+    addPageChange();
+
+ $(document).ready(function () {
+        $('#AddPage').on("change", function () { addPageChange(); });
+    })
+
+
+      function addPageChange() {
+        
+    if ($('#AddPage').is(":checked")) {
+            $('#pdf-file').hide();
+            $('#page-title').show();
+            $('#image-file').show();
+            $('#image-viewer').show();
+        }
+        else {
+              $('#pdf-file').show();
+            $('#page-title').hide();
+            $('#image-file').hide();
+            $('#image-viewer').hide();
+        }
+    }
+</script>

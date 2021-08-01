@@ -1,0 +1,25 @@
+﻿.input-validation-error {
+    border-color: rgb(233,0,0);
+}
+
+.field-validation-error {
+color:red;
+}
+
+div.required label:after {
+    content: '\00a0*';
+    color: red;
+}
+
+.input-validation-error:focus {
+    border-color: rgba(140, 18, 32, 0.6);
+    outline: 0;
+    outline: thin dotted \9;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(140, 18, 32, 0.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(140, 18, 32, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(140, 18, 32, 0.6);
+}
+
+/*.validation-summary-errors {
+    display: none;
+}*/

@@ -1,0 +1,102 @@
+﻿@model ControlPanel.ViewModels.HeaderViewModel
+
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">notifyMessage("@TempData["Message"]");</script>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <script type="text/javascript">notifyError("@TempData["ErrorMessage"]");</script>
+}
+
+@using (Html.BeginForm("Edit", "Header", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@ViewBag.Screen</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.Header)
+                                        @Html.TextBoxFor(x => x.Header, new { @class = "form-control", @placeholder = "Enter Header" })
+                                        @Html.ValidationMessageFor(x => x.Header)
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.SortOrder)
+                                        @Html.TextBoxFor(x => x.SortOrder, new { @class = "form-control", @placeholder = "Enter Sort Order", @type = "number", @min = "1", @step = "1", @Value = "1" })
+                                        @Html.ValidationMessageFor(x => x.SortOrder)
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.MakePublic)
+                                        @Html.CheckBoxFor(x => x.MakePublic)
+                                        @Html.ValidationMessageFor(x => x.MakePublic)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div id="image-file-header">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.ImageFile)
+                                            @Html.TextBoxFor(x => x.ImageFile, new { @class = "form-control", @type = "file" })
+                                            @Html.ValidationMessageFor(x => x.ImageFile)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            @Html.Label("Remove Image")
+                                            <button type="button" class="btn btn-danger" onclick="removeImage()">X</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                @Html.LabelFor(x => x.Image)
+                                            </div>
+                                            <div class="col-md-6" id="image-name">
+                                                @if (!string.IsNullOrEmpty(Model.Image))
+                                                {
+                                                    @Html.HiddenFor(x => x.Image)
+                                                    @Html.DisplayFor(x => x.Image.Split(new[] { '_' }, 2)[1])
+                                                }
+                                            </div>
+                                        </div>
+                                        @if (!string.IsNullOrEmpty(Model.Image))
+                                        {
+                                            <img class="img-responsive" id="ImageViewer" src="@(Url.Content("~/All_Images/"+Model.Image))" style="border: solid;height: 200px" alt="image" />
+                                        }
+                                        else
+                                        {
+                                            <img class="img-responsive" id="ImageViewer" src="" style="border: solid;height: 200px" alt="image" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-warning" onclick="history.go(-1);">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,76 @@
+﻿@model List<ControlPanel.ViewModels.ClientLogoViewModel>
+@{
+    int srNo = 1;
+    ViewBag.Title = "Client Logo";
+    ViewBag.Screen = "Client Logo";
+}
+
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">notifyMessage("@TempData["Message"]")</script>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <script type="text/javascript">notifyError("@TempData["ErrorMessage"]")</script>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">@ViewBag.Title</h3>
+                <br />
+                <br />
+                <a href="@Url.Action("Create","ClientLogo")" class="btn btn-success">
+                    <i class="fa fa-plus"></i> Create
+                </a>
+                <div class="box-tools">
+                </div>
+            </div>
+            <div class="box-body table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td style="width: 10px">#</td>
+                            <td>Client Name</td>
+                            <td>SortOrder</td>
+                            <td>MakePublic</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var client in Model)
+                            {
+                                <tr>
+                                    <td>@(srNo++)</td>
+                                    <td>@client.Name</td>
+                                    <td>@client.SortOrder</td>
+                                    <td>@(client.MakePublic == true ? "Yes" : "No")</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="#" href="@Url.Action("Edit", new { @id = client.Id })">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        </div>&nbsp;&nbsp;&nbsp;
+                                        <div class="btn-group">
+                                            <a class="#" href="@Url.Action("Delete",new { @id=client.Id})" onclick="return confirm('Are you sure you want to delete @(client.Name)?')">
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                        </div>&nbsp;&nbsp;
+                                        <div class="btn-group">
+                                            <a class="#" href="@Url.Action("Details", new { @id = client.Id })">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

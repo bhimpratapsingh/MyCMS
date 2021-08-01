@@ -1,0 +1,134 @@
+﻿@model ServicesWebsite.ViewModels.CareersViewModel
+@{
+    ViewBag.Title = "Careers - " + Constants.WEBSITE_NAME;
+}
+
+<div class="container">
+    <h2>Apply at @(Constants.WEBSITE_NAME)</h2>
+    <br />
+
+    <div class="message-box">
+        <p class=""></p>
+    </div>
+
+    <form id="career-form" method="post" enctype="multipart/form-data">
+
+        <div class="row job-application">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <i class="fa fa-user"></i>
+                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", @placeholder = "Enter Your First Name", @required = "required" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <i class="fa fa-user"></i>
+                    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", @placeholder = "Enter Your Last Name", @required = "required" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <i class="fa fa-envelope"></i>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Enter Your Email Address", @required = "required", @type = "email" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <i class="fa fa-phone"></i>
+                    @Html.TextBoxFor(x => x.MobileNumber, new { @class = "form-control", @placeholder = "Enter Your Contact Number", @required = "required", @type = "text", @title = "Please enter contact number" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <i class="fa fa-building"></i>
+                    @Html.TextBoxFor(x => x.City, new { @class = "form-control", @placeholder = "Enter City", @required = "required" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <i class="fa fa-building"></i>
+                    @Html.TextBoxFor(x => x.State, new { @class = "form-control", @placeholder = "Enter State", @required = "required" })
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <i class="fa fa-briefcase"></i>
+                    @Html.TextBoxFor(x => x.Specialization, new { @class = "form-control", @placeholder = "Enter Your Specialization", @required = "required" })
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <i class="fa fa-upload"></i>
+                    @Html.TextBoxFor(x => x.Resume, new { @class = "form-control", @type = "file", @required = "required" })
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <i class="fa fa-comment"></i>
+                    @Html.TextAreaFor(x => x.Message, new { @class = "form-control", @placeholder = "Enter Your Message" })
+                </div>
+            </div>
+            <div class="col-md-12 mb-2 text-center">
+                <input style="background-color:darkblue;" type="submit" id="submitData" class="btn btn-primary btn-lg" value="Submit" />
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+<script>
+    
+
+    $("form#career-form").submit(function (e) {
+        e.preventDefault();
+
+        $('#submitData').val("Submitting..");
+        $('#submitData').attr("disabled",true);
+
+        debugger;
+        var formData = new FormData(this);
+
+        //reset all form controls
+        $(this).closest('form#career-form').find("input[type=text], textarea,input[type=email],input[type=file]",).val("");
+
+        $.ajax({
+            url: window.location.pathname,
+            type: 'POST',
+            data: formData,
+            success: function (data) {
+                $('html, body').animate({
+                    scrollTop: $(".message-box").offset().top - 150
+                }, 1000);
+
+                if (data.Success) {
+                    $('.message-box p').text(data.Message);
+                    $('.message-box p').addClass("text-success");
+                }
+                else {
+
+                    $('.message-box p').text(data.Message);
+                    $('.message-box p').addClass("text-danger");
+                }
+            },
+            complete: function() {
+                $('#submitData').val("Submit");
+                $('#submitData').attr("disabled", false);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+
+    $("#Resume").change(function () {
+        var fileExtension = ['pdf'];
+        if ($(this).val() != null || $(this).val() != "") {
+            if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Only formats allowed are: " + fileExtension.join(', '));
+                $('#Resume').val('');
+            }
+        }
+    });
+
+</script>

@@ -1,0 +1,211 @@
+﻿@model ControlPanel.ViewModels.MainContentViewModel
+
+@{ int i = 1;}
+
+
+
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">notifyMessage("@TempData["Message"]");</script>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <script type="text/javascript">notifyError("@TempData["ErrorMessage"]");</script>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">@ViewBag.Screen</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(x => x.Content)
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.DisplayFor(x => x.Content)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(x => x.SortOrder)
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.DisplayFor(x => x.SortOrder)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @Html.Label("Made Public")
+                                </div>
+                                <div class="col-md-6">
+                                    @(Model.MakePublic == true ? "Yes" : "No")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (Model.AddPage == false)
+                    {
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(x => x.FileName)
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if (!string.IsNullOrEmpty(Model.FileName))
+                                        {
+                                            @(Model.FileName.Split(new[] { '_' }, 2)[1])
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.Label("Page Added")
+                                    </div>
+                                    <div class="col-md-6">
+                                        @(Model.AddPage == true ? "Yes" : "No")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(x => x.PageTitle)
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.DisplayFor(x => x.PageTitle)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(x => x.ImageFile)
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if (!string.IsNullOrEmpty(Model.Image))
+                                        {
+                                            @(Model.Image.Split(new[] { '_' }, 2)[1])
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <img class="img-responsive" id="ImageViewer" src="~/All_Images/@Model.Image" style="border: solid;height: 200px" alt="image" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="box-footer">
+                <button type="button" class="btn btn-warning" onclick="history.go(-1);">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (string.IsNullOrEmpty(Model.FileName))
+{
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">SubContent</h3>
+                    <br />
+                    <br />
+                    <a href="@Url.Action("Create", "SubContent", new { id = Model.Id })" class="btn btn-success">
+                        <i class="fa fa-plus"></i> Create
+                    </a>
+                    <div class="box-tools">
+                    </div>
+                </div>
+
+                <div class="box-body table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td style="width: 10px">#</td>
+                                <td>Content</td>
+                                <td>Has Page</td>
+                                <td>Sort Order</td>
+                                <td>Made public</td>
+                                <td>Linked File Name</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if ((ViewBag.SubContentList as List<ControlPanel.ViewModels.SubContentViewModel>).Count != 0)
+                            {
+                                foreach (var item in ViewBag.SubContentList as List<ControlPanel.ViewModels.SubContentViewModel>)
+                                {
+                                    <tr>
+                                        <td>@(i++)</td>
+                                        <td>@(item.Content)</td>
+                                        <td>@(item.AddPage == true ? "Yes" : "No")</td>
+                                        <td>@(item.SortOrder)</td>
+                                        <td>@(item.MakePublic == true ? "yes" : "No")</td>
+                                        <td>@(!string.IsNullOrEmpty(item.FileName) ? item.FileName.Split(new[] { '_' }, 2)[1] : "")</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a class="#" href="@Url.Action("Edit", "SubContent", new { @id = item.Id })">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </div>&nbsp;&nbsp;&nbsp;
+                                            <div class="btn-group">
+                                                <a class="#" href="@Url.Action("Delete", "SubContent", new { @id = item.Id })" onclick="return confirm('Are you sure you want to delete @(item.Content). All subcontents will delete ?')">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </div>&nbsp;&nbsp;
+                                            @if (string.IsNullOrEmpty(item.FileName))
+                                            {
+                                                <div class="btn-group">
+                                                    <a class="#" href="@Url.Action("Details", "SubContent", new { @id = item.Id })">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                </div>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

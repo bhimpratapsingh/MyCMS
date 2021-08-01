@@ -1,0 +1,69 @@
+﻿@model List<ControlPanel.ViewModels.HeaderViewModel>
+@{
+    int srNo = 1;
+}
+
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">notifyMessage("@TempData["Message"]")</script>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <script type="text/javascript">notifyError("@TempData["ErrorMessage"]")</script>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">@ViewBag.Title</h3>
+                <div class="box-tools">
+                </div>
+            </div>
+            <div class="box-body table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td style="width: 10px">#</td>
+                            <td>Header</td>
+                            <td>SortOrder</td>
+                            <td>MakePublic</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var header in Model)
+                            {
+                                <tr>
+                                    <td>@(srNo++)</td>
+                                    <td>@header.Header</td>
+                                    <td>@header.SortOrder</td>
+                                    <td>@(header.MakePublic == true ? "Yes" : "No")</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="#" href="@Url.Action("Edit", new { @id = header.Id })">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        </div>&nbsp;&nbsp;&nbsp;
+                                        <div class="btn-group">
+                                            <a class="#" href="@Url.Action("Delete",new { @id=header.Id})" onclick="return confirm('Are you sure you want to delete @(header.Header). All subcontent will get deleted?')">
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                        </div>&nbsp;&nbsp;
+                                        <div class="btn-group">
+                                            <a class="#" href="@Url.Action("Details", new { @id = header.Id })">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

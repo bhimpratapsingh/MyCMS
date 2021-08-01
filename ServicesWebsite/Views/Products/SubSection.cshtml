@@ -1,0 +1,42 @@
+﻿@model ServicesWebsite.ViewModels.SubContentViewModel
+@{
+    ViewBag.Title = "Products - " + Constants.WEBSITE_NAME;
+}
+
+
+<div class="container">
+    <h2>@(Model.PageTitle ?? Model.Content)</h2>
+    <div>
+        <div class="col-lg-12 col-md-12" style="padding:0px;">
+            <div class="col-lg-6 col-md-6" style="padding:0px;">
+
+                <ol>
+                    @foreach (var subContentListItem in Model.SubContentListData)
+                    {
+                        if (!string.IsNullOrEmpty(subContentListItem.FileName))
+                        {
+                            <li>@(subContentListItem.Content) @Html.ActionLink("Link", "Index", "Download", new { FileName = subContentListItem.FileName }, null)</li>
+                        }
+                        else
+                        {
+                            <li>@(subContentListItem.Content)</li>
+                        }
+                    }
+                </ol>
+            </div>
+            @if (!string.IsNullOrEmpty(Model.Image))
+            {
+                <div class="col-lg-6 col-md-6" style="padding-bottom:20px;">
+                    <img style="height:auto;" src="@(Constants.IMAGE_FOLDER_URL + Model.Image)" />
+                </div>
+            }
+            else
+            {
+                <div class="col-lg-6 col-md-6" style="padding-bottom:20px;">
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

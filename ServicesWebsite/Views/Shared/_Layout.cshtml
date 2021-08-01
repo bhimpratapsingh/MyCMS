@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="Our software solutions are designed to manage complexity in engineering, design and information management projects in the marine and plant industries.">
+    <meta name="og:title" content="Home - @Constants.WEBSITE_NAME">
+    <meta name="og:description" content="Our software solutions are designed to manage complexity in engineering, design and information management projects in the marine and plant industries.">
+
+    <link href="~/favicon.png" rel="icon">
+
+    @Styles.Render("~/Content/StyleDesign")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    @Scripts.Render("~/bundles/script")
+
+</head>
+<body>
+    <div>
+        <section id="header">
+            <header>
+                <nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" style="color:darkblue;" href="@(Url.Action("Index","Home"))"><b>@(Constants.WEBSITE_NAME)</b></a>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="myNavbar">
+                            @*<ul class="nav navbar-nav">*@
+                            @*<li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Page 1-1</a></li>
+                                    <li><a href="#">Page 1-2</a></li>
+                                    <li><a href="#">Page 1-3</a></li>
+                                </ul>
+                            </li>*@
+                            @*<li><a href="#">Page 2</a></li>
+                            <li><a href="#">Page 3</a></li>*@
+                            @*</ul>*@
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="@(Url.Action("Index","Home",null))">Home</a></li>
+                                <li><a href="@(Url.Action("Index","Services",null))">Services</a></li>
+                                <li><a href="@(Url.Action("Index","Products",null))">Products</a></li>
+                                <li><a href="@(Url.Action("Index","Careers",null))">Careers</a></li>
+                                <li><a href="@(Url.Action("About","Home",null))">About us</a></li>
+                                <li><a href="@(Url.Action("HowWeWork","Home",null))">How We Work</a></li>
+                                <li><a href="@(Url.Action("Contact","Home",null))">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                @*<a>Logo</a>*@
+                @*<ul>
+                    <li>Home</li>
+                    <li>Contact Us</li>
+                    <li>About Us</li>
+                </ul>*@
+            </header>
+        </section>
+        <div id="sfctllapnk11tfr7jzpbc7wsrl7tdfas7gm"></div>
+        <div id="sfczu2trc8lnlbcqpah8yxx947webusredz"></div>
+        <div id="sfc3clnst9qr1fcdp1f59rb8punb44p2udw"></div>
+        <script type="text/javascript" src="https://counter5.stat.ovh/private/counter.js?c=3clnst9qr1fcdp1f59rb8punb44p2udw&down=async" async></script><noscript><a href="https://www.freecounterstat.com" title="free website counter"><img src="https://counter5.stat.ovh/private/freecounterstat.php?c=3clnst9qr1fcdp1f59rb8punb44p2udw" border="0" title="free website counter" alt="free website counter"></a></noscript>
+
+        @RenderBody()
+
+        <button onclick="topFunction()" id="myBtn" title="Go to top"><span class="fa fa-arrow-up"></span></button>
+
+        <br />
+        <br />
+        <footer>
+            @*<p>&copy; @DateTime.Now.Year - @(Constants.WEBSITE_NAME)</p>*@
+            <div class="container">
+                <div class="top">
+                    <a href="@(Url.Action("Index","Home"))"><b>@(Constants.WEBSITE_NAME)</b></a>
+                    <p><span>@Constants.TAG_LINE</span></p>
+                </div>
+                <div class="middle">
+                    <div class="inner">
+                        <nav class="nav">
+                            <ul>
+                                <li>
+                                    <a href="@(Url.Action("Index","Home"))">Home</a>
+                                </li>
+                                <li>
+                                    <a href="@(Url.Action("Index","Services"))">Services</a>
+                                </li>
+                                <li>
+                                    <a href="@(Url.Action("Index","Products"))">Product</a>
+                                </li>
+                                <li>
+                                    <a href="@(Url.Action("Index","Careers",null))">Careers</a>
+                                </li>
+                                <li>
+                                    <a href="@(Url.Action("HowWeWork","Home"))">How We Work</a>
+                                </li>
+                                <li>
+                                    <a href="@(Url.Action("About","Home"))">About us</a>
+                                </li>
+                                <li>
+                                    <a href="@(Url.Action("Contact","Home"))">Contact Us</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="social">
+                            <a href="@Constants.TWITTER_URL" class="twitter" target="_blank" rel="noopener"></a>
+                            <a href="@Constants.FACEBOOK_URL" class="facebook" target="_blank" rel="noopener"></a>
+                            <a href="@Constants.LINKED_IN_URL" class="linkedin" target="_blank" rel="noopener"></a>
+                            <a href="@Constants.YOUTUBE_URL" class="youtube" target="_blank" rel="noopener"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="inner">
+                        <small>©2019-@(DateTime.Now.Year) <b>@(Constants.WEBSITE_NAME)</b></small> <a href="#">Sitemap</a> <a href="#">Privacy policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+@* =============================================Back to Top button script=================================================== *@
+    var mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+
+        //$(function () {
+        //    $('#sfcj2dmff74e39s5f129l43ty4lc8m5m4db').append('<span>Total Visitors: </span>')
+        //});
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+﻿@model List<ServicesWebsite.ViewModels.HeaderViewModel>
+
+@{
+    ViewBag.Title = "Products - " + Constants.WEBSITE_NAME;
+}
+
+<div class="container">
+    <h2>Products</h2>
+    <br />
+    @foreach (var headerItem in Model)
+    {
+        <div>
+            <div class="col-lg-12 col-md-12" style="padding:0px;">
+                <div class="col-lg-6 col-md-6" style="padding:0px;">
+                    <h4>@(headerItem.Header)</h4>
+                    <ul>
+                        @foreach (var mainContentItem in headerItem.MainContentData)
+                        {
+                            if (!string.IsNullOrEmpty(mainContentItem.FileName))
+                            {
+                                <li>@(mainContentItem.Content) @Html.ActionLink("Link", "Index", "Download", new { FileName = mainContentItem.FileName }, null)</li>
+                            }
+                            else if (mainContentItem.AddPage)
+                            {
+                                <li>@Html.ActionLink(mainContentItem.Content, "Section", new { MainContentId = mainContentItem.Id }) </li>
+                            }
+                            else
+                            {
+                                if (mainContentItem.SubContentData.Count > 0)
+                                {
+                                    <li>
+                                        @(mainContentItem.Content)
+                                        <ul>
+
+                                            @foreach (var subContentItem in mainContentItem.SubContentData)
+                                            {
+                                                if (!string.IsNullOrEmpty(subContentItem.FileName))
+                                                {
+                                                    <li>@(subContentItem.Content) @Html.ActionLink("Link", "Index", "Download", new { FileName = subContentItem.FileName }, null)</li>
+                                                }
+                                                else if (subContentItem.AddPage)
+                                                {
+                                                    <li>@Html.ActionLink(subContentItem.Content, "SubSection", new { SubContentItem = subContentItem.Id }) </li>
+                                                }
+                                                else
+                                                {
+                                                    if (subContentItem.SubContentListData.Count > 0)
+                                                    {
+                                                        <li>
+                                                            @(subContentItem.Content)
+                                                            <ul>
+                                                                @foreach (var subContentListItem in subContentItem.SubContentListData)
+                                                                {
+                                                                    if (!string.IsNullOrEmpty(subContentItem.FileName))
+                                                                    {
+                                                                        <li>@(subContentListItem.Content) @Html.ActionLink("Link", "Index", "Download", new { FileName = subContentListItem.FileName }, null)</li>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <li>@(subContentListItem.Content)</li>
+                                                                    }
+                                                                }
+                                                            </ul>
+                                                        </li>
+                                                    }
+                                                    else
+                                                    {
+                                                        <li>@(subContentItem.Content)</li>
+                                                    }
+                                                }
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>@mainContentItem.Content</li>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+                @if (!string.IsNullOrEmpty(headerItem.Image))
+                {
+                    <div class="col-lg-6 col-md-6" style="padding-bottom:20px;">
+                        <img style="height:auto;" src="@(Constants.IMAGE_FOLDER_URL + headerItem.Image)" />
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg-6 col-md-6" style="padding-bottom:20px;">
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+

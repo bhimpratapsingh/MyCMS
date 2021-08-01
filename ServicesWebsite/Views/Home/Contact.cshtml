@@ -1,0 +1,164 @@
+﻿@model ServicesWebsite.ViewModels.QueryFormViewModel
+@{
+    ViewBag.Title = "Contact - " + Constants.WEBSITE_NAME;
+}
+
+<div class="container">
+    <h2>Contact Us</h2>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="contact-address">
+                    <h4><span><i class="fa fa-home"></i>&nbsp;</span>Address</h4>
+                    <address>Lorem Ipsum, Lorem Ipsum, 432343.</address>
+                </div>
+
+                <br />
+                <div class="contact-phone">
+                    <h4><span><i class="fa fa-phone"></i>&nbsp;</span>Phone Number</h4>
+                    <p><a href="tel:+91987654321">+91 987654321</a></p>
+                </div>
+
+                <br />
+                <div class="contact-email">
+                    <h4><span><i class="fa fa-envelope"></i>&nbsp;</span>Email</h4>
+                    <p><a href="mailto:abc@mycms.com">abc@mycms.com</a></p>
+                </div>
+            </div>
+            <div class="col-md-6 locate-us" style="height:230px;padding-top:10px;">
+                <h4>Locate us</h4>
+                <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=250&amp;hl=en&amp;q=Mumbai&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://www.fridaynightfunkin.net/friday-night-funkin-mods-fnf-play-online/">Friday Night Funkin Mods</a></div>
+                <style>
+                    .mapouter {
+                        position: relative;
+                        text-align: right;
+                        width: 100%;
+                        height: 250px;
+                    }
+
+                    .gmap_canvas {
+                        overflow: hidden;
+                        background: none !important;
+                        width: 100%;
+                        height: 250px;
+                    }
+
+                    .gmap_iframe {
+                        height: 250px !important;
+                    }
+                </style></div>
+            </div>
+
+        </div>
+    </div>
+    <br />
+
+    <h2 style="padding-top:20px;">Write Us</h2>
+
+    <div class="message-box">
+        <p class=""></p>
+    </div>
+
+    <form id="career-form" method="post" enctype="multipart/form-data">
+
+        <div class="row job-application">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <i class="fa fa-user"></i>
+                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", @placeholder = "Enter Your First Name", @required = "required" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <i class="fa fa-user"></i>
+                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", @placeholder = "Enter Your First Name", @required = "required" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <i class="fa fa-envelope"></i>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Enter Your Email Address", @required = "required", @type = "email" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <i class="fa fa-phone"></i>
+                    @Html.TextBoxFor(x => x.MobileNumber, new { @class = "form-control", @placeholder = "Enter Your Contact Number", @required = "required", @type = "text", @title = "Please enter contact number" })
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <i class="fa fa-comment"></i>
+                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @placeholder = "Enter Your Message" })
+                </div>
+            </div>
+            <div class="col-md-12 mb-2 text-center">
+                <input style="background-color:darkblue;" type="submit" id="submitData" class="btn btn-primary btn-lg" value="Submit" />
+            </div>
+        </div>
+
+    </form>
+
+
+    @*<div class="container">
+            <h4>Locate us</h4>
+            <iframe width='100%' height='100%' id='mapcanvas' src='https://maps.google.com/maps?q=S.%20V%20Nagar,%20Tirupati%20-%20517502,%20Andhra%20Pradhesh,India&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'><div class="zxos8_gm"><a href="https://www.freecarcheck.co.uk/guides/previous-owners-check/">how to verify previous owner</a></div><div style='overflow:hidden;'><div id='gmap_canvas' style='height:100%;width:100%;'></div></div><div><small>Powered by <a href="https://www.embedgooglemap.co.uk">Embed Google Map</a></small></div></iframe>
+        </div>*@
+</div>
+
+
+
+<script>
+    $("form#career-form").submit(function (e) {
+        e.preventDefault();
+
+        $('#submitData').val("Submitting..");
+        $('#submitData').attr("disabled", true);
+
+
+        var formData = new FormData(this);
+
+        //reset all form controls
+        $(this).closest('form#career-form').find("input[type=text], textarea,input[type=email],input[type=file]").val("");
+
+        $.ajax({
+            url: window.location.pathname,
+            type: 'POST',
+            data: formData,
+            success: function (data) {
+                $('html, body').animate({
+                    scrollTop: $(".message-box").offset().top -150
+                }, 1000);
+
+                if (data.Success) {
+                    $('.message-box p').text(data.Message);
+                    $('.message-box p').addClass("text-success");
+                }
+                else {
+
+                    $('.message-box p').text(data.Message);
+                    $('.message-box p').addClass("text-danger");
+                }
+            },
+            complete: function () {
+                $('#submitData').val("Submit");
+                $('#submitData').attr("disabled", false);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+
+    $("#Resume").change(function () {
+        var fileExtension = ['pdf'];
+        if ($(this).val() != null || $(this).val() != "") {
+            if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Only formats allowed are: " + fileExtension.join(', '));
+                $('#Resume').val('');
+            }
+        }
+    });
+
+</script>

@@ -1,0 +1,587 @@
+﻿
+
+body {
+    margin-top: 76px;
+}
+
+
+
+/*Changed the box size to fix content on navbar like icon and website name aligned*/
+/** {
+            box-sizing: content-box;
+        }*/
+.container-fluid {
+    margin-bottom: 15px;
+}
+
+/*Made content aligned with brand name*/
+.navbar-nav > li > a {
+    padding-top: 25px;
+}
+
+/*Make font color of navbar black*/
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand,
+.navbar-inverse .navbar-nav > li > a {
+    color: black;
+}
+
+    /*Make font color of navbar orage on hover and focus*/
+    .navbar-inverse .navbar-nav > li > a:hover,
+    .navbar-inverse .navbar-nav > li > a:focus {
+        color: grey;
+    }
+
+/*Removed the margin from left (By default it is -15px)*/
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    margin-left: 0px;
+}
+
+/*Made background color, border color of complete navbar white*/
+.navbar-inverse {
+    background-color: white;
+    border-color: white;
+}
+
+    /*Makes the border of toggle button white*/
+    .navbar-inverse .navbar-toggle {
+        border-color: white;
+        margin-top: 18px;
+    }
+
+
+.navbar-toggle {
+    margin: 15px;
+}
+
+/*Makes the icon bar black*/
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: black;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: white;
+}
+
+.navbar-inverse {
+    margin-bottom: 0px;
+}
+
+/*Set the logo height*/
+.navbar-brand > img {
+    height: inherit;
+}
+
+a.navbar-brand {
+    font-size: 30px;
+}
+
+.carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img {
+    height: 600px;
+    width: 100%;
+}
+
+video {
+    height: 600px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.carousel-inner > .item.active, .carousel-inner > .item.next.left, .carousel-inner > .item.prev.right {
+    margin-bottom: -5px;
+}
+
+.goals p {
+    font-size: 22px;
+    font-style: italic;
+    text-align: center;
+    margin: 50px;
+}
+
+.vision p {
+    font-size: 22px;
+    font-style: italic;
+    text-align: center;
+    margin: 40px;
+}
+
+h2 {
+    text-align: center;
+    font-style: italic;
+    color: darkblue;
+}
+
+.headers, h4 {
+    color: darkblue;
+    padding:6px;
+}
+
+img {
+    max-width: 100%;
+}
+
+.services > h4, .about-us > h4 {
+    color: darkblue;
+}
+
+.about-us > p, .services, .how-we-work {
+    text-align: justify;
+}
+
+.card-body {
+    border: solid;
+    margin: 15px;
+    border-width: thin;
+    border-color: lightgrey;
+    /*height: 100px;*/
+    text-align: center;
+    vertical-align: middle;
+    /*padding:30px;*/
+}
+
+    .card-body a {
+        color: white;
+    }
+
+    .card-body h3 {
+        text-align: center;
+    }
+
+    .card-body p {
+        text-align: center;
+    }
+
+/*footer p {
+    background-color: lightgray;
+    margin-bottom: 0px;
+    line-height: 3;
+    text-align: center;
+}*/
+
+.top {
+    padding: 20px 0px;
+    font-size: 34px;
+}
+
+    .top a {
+        color: white;
+        text-align: left;
+    }
+
+    .top p {
+        float: right;
+        font-size: 24px;
+        font-weight: 600;
+        color: white;
+        font-style: italic;
+        padding: 10px;
+    }
+
+.middle {
+    padding: 7px 0 0 0;
+    border-top: 1px solid #5b6770;
+}
+
+.nav {
+    text-align: left;
+}
+
+
+footer .middle > .inner {
+    position: relative;
+}
+
+.middle > .inner > .nav ul {
+    margin: 0px;
+    list-style: none;
+    display: block;
+    list-style-type: none;
+    text-align: left;
+    display: flex;
+    padding: 10px;
+}
+
+.middle > .inner > .nav li {
+    padding: 10px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.nav a {
+    color: white;
+}
+
+footer {
+    background-color: #333f48;
+}
+
+
+.bottom {
+    text-align: right;
+    border-top: 1px solid #5b6770;
+    position: relative;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: rgba(255,255,255,.5);
+}
+
+    .bottom > .inner {
+        position: relative;
+        text-align: center;
+    }
+
+    .bottom small {
+        /*position: absolute;
+        top: 0;
+        left: 0;*/
+        color: rgba(255,255,255,.5);
+        font-size: 14px;
+    }
+
+    .bottom a {
+        margin-left: 10px;
+        color: rgba(255,255,255,.5);
+        font-size: 14px;
+    }
+
+
+
+footer .social {
+    position: absolute;
+    right: 0;
+    top: 0px;
+}
+
+    footer .social a {
+        display: inline-block;
+        height: 50px;
+        width: 50px;
+        background: no-repeat center center;
+        border-radius: 50%;
+        margin: 0 5px 0 5px;
+        border: 2px solid #5b6770;
+    }
+
+        /*Local Pc*/
+        footer .social a.twitter {
+            background-image: url("../icon/twitter.svg");
+        }
+
+        footer .social a.facebook {
+            background-image: url("../icon/facebook.svg");
+        }
+
+        footer .social a.linkedin {
+            background-image: url("../icon/linkedin.svg");
+        }
+
+        footer .social a.youtube {
+            background-image: url("../icon/youtube.svg");
+        }
+
+/*For Server*/
+/*footer .social a.twitter {
+            background-image: url("./icon/twitter.svg");
+        }
+
+        footer .social a.facebook {
+            background-image: url("./icon/facebook.svg");
+        }
+
+        footer .social a.linkedin {
+            background-image: url("./icon/linkedin.svg");
+        }
+
+        footer .social a.youtube {
+            background-image: url("./icon/youtube.svg");
+        }*/
+
+/*ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: block;
+}
+
+    li:before {
+        content: "\e080";
+        font-family: 'Glyphicons Halflings';
+        font-size: 9px;
+        float: left;
+        margin-top: 4px;
+        margin-left: -17px;
+        color: darkblue;
+    }*/
+
+#myBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: darkblue; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 50px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+}
+
+    #myBtn:hover {
+        background-color: #555; /* Add a dark-grey background on hover */
+    }
+
+.card-body > p > a {
+    text-align: center;
+}
+
+.locate-us {
+    width: 30%;
+}
+
+
+.job-application {
+    padding: 20px 15px;
+    background: #fff;
+    border: #eeeeee solid 1px;
+}
+
+
+    .job-application .form-group {
+        margin: 12px 0px;
+    }
+
+    .job-application .form-control {
+        height: auto;
+        font-size: 18px;
+        background: transparent;
+        padding: 10px 10px 10px 40px;
+    }
+
+    .job-application i {
+        font-size: 20px;
+        color: darkblue;
+        position: relative;
+        top: 35px;
+        left: 15px;
+    }
+
+
+/*************************************************************************************Logo  Slider *************************************************************************/
+.slick-slide {
+    margin: 0px 20px;
+}
+
+    .slick-slide img {
+        width: 100%;
+    }
+
+.slick-slider {
+    position: relative;
+    display: block;
+    margin: 30px 0;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+    .slick-list:focus {
+        outline: none;
+    }
+
+    .slick-list.dragging {
+        cursor: pointer;
+        cursor: hand;
+    }
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+    .slick-track:before,
+    .slick-track:after {
+        display: table;
+        content: '';
+    }
+
+    .slick-track:after {
+        clear: both;
+    }
+
+.slick-loading .slick-track {
+    visibility: hidden;
+}
+
+.slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+
+[dir='rtl'] .slick-slide {
+    float: right;
+}
+
+.slick-slide img {
+    display: block;
+}
+
+.slick-slide.slick-loading img {
+    display: none;
+}
+
+.slick-slide.dragging img {
+    pointer-events: none;
+}
+
+.slick-initialized .slick-slide {
+    display: block;
+}
+
+.slick-loading .slick-slide {
+    visibility: hidden;
+}
+
+.slick-vertical .slick-slide {
+    display: block;
+    height: auto;
+    border: 1px solid transparent;
+}
+
+.slick-arrow.slick-hidden {
+    display: none;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .navbar-nav > li > a {
+        padding: 10px;
+    }
+
+
+    h2 {
+        font-size: 20px;
+    }
+
+    a.navbar-brand {
+        font-size: 22px;
+    }
+
+    .carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img, video {
+        height: 400px;
+        object-fit: cover;
+    }
+
+    .goals p {
+        font-size: 18px;
+        font-style: italic;
+        text-align: justify;
+        margin: 40px 20px;
+    }
+
+    .vision p {
+        font-size: 18px;
+        font-style: italic;
+        text-align: justify;
+        margin: 20px;
+    }
+
+    .top {
+        text-align: center;
+        padding: 10px;
+    }
+
+        .top a {
+            font-size: 30px;
+        }
+
+        .top p {
+            float: none;
+            font-size: 16px;
+            margin: 10px;
+            text-align: center;
+            font-weight: 600;
+            color: white;
+        }
+
+    footer .nav {
+        text-align: center;
+    }
+
+    .middle {
+        padding: 0;
+    }
+
+        .middle > .inner > .nav ul {
+            display: block;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .middle > .inner > .nav li {
+            padding: 10px 0 0 0;
+            list-style: none;
+        }
+
+    footer .bottom {
+        text-align: center;
+    }
+
+        footer .bottom .inner {
+            text-align: center;
+        }
+
+        footer .bottom small {
+            display: block;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+    footer .social {
+        position: relative;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+
+    .locate-us {
+        width: 100%;
+    }
+
+    .job-application {
+        padding: 5px 0px 10px 0px;
+        margin: 0px;
+    }
+}

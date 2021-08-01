@@ -1,0 +1,52 @@
+﻿@model List<ControlPanel.ViewModels.HeaderViewModel>
+@{
+    ViewBag.Title = "Home Screen";
+    ViewBag.Screen = "Home Screen";
+}
+
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">notifyMessage("@TempData["Message"]");</script>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <script type="text/javascript">notifyError("@TempData["ErrorMessage"]");</script>
+}
+
+@using (Html.BeginForm("HomeScreen", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@ViewBag.Screen</h3>
+                </div>
+                <div class="box-body">
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        @Html.HiddenFor(x=>x[i].Id)
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label(Model[i].Type == (int)ControlPanel.ViewModels.Category.Services?Constants.CATEGORY_SERVICE: Constants.CATEGORY_PRODUCT )
+                                    @Html.TextBoxFor(x=>x[i].Header, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(x=>x[i].BackColor)
+                                    @Html.TextBoxFor(x=>x[i].BackColor, new { @class = "form-control" ,type="color"})
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-warning" onclick="history.go(-1);">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

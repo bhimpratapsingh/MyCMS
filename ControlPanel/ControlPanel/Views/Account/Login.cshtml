@@ -1,0 +1,47 @@
+﻿@model ControlPanel.ViewModels.AccountViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">notifyMessage("@TempData["Message"]");</script>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <script type="text/javascript">notifyError("@TempData["ErrorMessage"]");</script>
+}
+<div class="login-box">
+    <div class="login-logo">
+        <a href="index.html"><b>@(Constants.WEBSITE_NAME)</b> CP</a>
+    </div>
+    <div class="login-box-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
+            <div class="form-group has-feedback">
+                @Html.LabelFor(x => x.Username)
+                @Html.TextBoxFor(x => x.Username, new { @class = "form-control", @placeholder = "Username", @tabIndex = "1" })
+                @Html.ValidationMessageFor(x => x.Username)
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                @Html.LabelFor(x => x.Password)
+                @Html.PasswordFor(x => x.Password, new { @class = "form-control", @placeholder = "Password", @tabIndex = "2" })
+                @Html.ValidationMessageFor(x => x.Password)
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+           
+            <div class="row">
+                <div class="col-xs-8">
+                </div>
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat" tabindex="3">Sign In</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
